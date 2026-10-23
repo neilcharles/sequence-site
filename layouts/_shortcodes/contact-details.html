@@ -1,0 +1,26 @@
+{{- /* Ways to get in touch, as cards with a button each: book a call
+  (the main one), email and LinkedIn. Details come from [params] in
+  hugo.toml. */ -}}
+<div class="contact-options">
+  {{- with site.Params.calendly }}
+  <section class="contact-option">
+    <h2>Book a call</h2>
+    <p>Pick a time for an introductory chat about what you're trying to measure.</p>
+    <a class="button" href="{{ . }}">Choose a time</a>
+  </section>
+  {{- end }}
+  {{- with site.Params.email }}
+  <section class="contact-option">
+    <h2>Email</h2>
+    <p>Send us a question, a brief or some data you'd like a second opinion on, at <a href="mailto:{{ . }}">{{ . }}</a>.</p>
+    <a class="button button-outline" href="mailto:{{ . }}">Email us</a>
+  </section>
+  {{- end }}
+  {{- with site.Params.linkedin }}
+  <section class="contact-option">
+    <h2>LinkedIn</h2>
+    <p>Follow our news, or send us a message there.</p>
+    <a class="button button-outline" href="{{ . }}">Sequence on LinkedIn</a>
+  </section>
+  {{- end }}
+</div>

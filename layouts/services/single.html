@@ -1,0 +1,37 @@
+{{ define "main" }}
+{{ partial "page-head.html" . }}
+<div class="wrap">
+  {{- /* Text on the left (what it is, what we need, what you get); example
+       images stacked on the right. Without examples the text runs alone. */}}
+  <article class="service{{ if .Params.examples }} has-examples{{ end }}">
+    <div class="service-text">
+      <section aria-labelledby="what-is-it">
+        <h2 id="what-is-it">What is it?</h2>
+        <div class="prose">{{ .Content }}</div>
+        {{ with .Params.good_for }}<p class="good-for"><span class="label">Good for</span>{{ . }}</p>{{ end }}
+      </section>
+      {{ with .Params.data }}
+      <section aria-labelledby="what-we-need">
+        <h2 id="what-we-need">What we need</h2>
+        <ul class="ticks">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      </section>
+      {{ end }}
+      {{ with .Params.get }}
+      <section aria-labelledby="what-you-get">
+        <h2 id="what-you-get">What you get</h2>
+        <ul class="ticks">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      </section>
+      {{ end }}
+    </div>
+    {{ with .Params.examples }}
+    <div class="service-examples">
+      {{ range . }}{{ partial "figure.html" (dict "page" $ "f" .) }}{{ end }}
+    </div>
+    {{ end }}
+    {{- /* ByWeight.Prev is the page after this one in weight order. */}}
+    {{ $services := .CurrentSection.Pages.ByWeight }}
+    {{ $next := $services.Prev . | default (index $services 0) }}
+    <p class="next"><span class="label">Next service</span><br><a href="{{ $next.RelPermalink }}">{{ $next.Title }} &rarr;</a></p>
+  </article>
+</div>
+{{ end }}

@@ -1,0 +1,81 @@
+{{ define "main" }}
+{{ with .Params.banner }}{{ with resources.Get . }}
+{{ $img := . }}
+{{ $sizes := slice 800 1400 2000 2800 }}
+{{ $srcset := slice }}
+{{ range $sizes }}{{ $srcset = $srcset | append (printf "%s %dw" ($img.Resize (printf "%dx webp q78" .)).RelPermalink .) }}{{ end }}
+{{ $fallback := .Resize "1600x jpg q80" }}
+<div class="banner">
+  <img src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="100vw"
+       width="{{ $fallback.Width }}" height="{{ $fallback.Height }}" alt="" fetchpriority="high">
+</div>
+{{ end }}{{ end }}
+<section class="hero">
+  <div class="wrap">
+    <span class="sa-dashes" aria-hidden="true"></span>
+    {{ with .Params.label }}<p class="label">{{ . }}</p>{{ end }}
+    <h1>{{ .Params.headline | default site.Title }}</h1>
+    {{ with .Params.lead }}<p class="lead">{{ . }}</p>{{ end }}
+    {{ with .Params.measures }}
+    <ul class="measures">
+      {{ range . }}<li><strong>{{ .title }}</strong>{{ .text }}</li>{{ end }}
+    </ul>
+    {{ end }}
+    <a class="button" href="{{ "contact/" | relURL }}">Talk to us</a>
+  </div>
+</section>
+
+{{/* Client logos, sized by area (a 3:1 wordmark is 1) so wide and square
+     marks carry similar weight. The list is repeated once so the strip can
+     scroll seamlessly; the copy is hidden from assistive tech. */}}
+{{ with .Params.clients }}
+{{ $marks := slice }}
+{{ range . }}
+  {{ $img := resources.Get (printf "images/clients/%s.png" .logo) }}
+  {{ if not $img }}{{ errorf "clients: images/clients/%s.png not found" .logo }}{{ end }}
+  {{ $img = $img.Resize "x120 png" }}
+  {{ $f := mul (.scale | default 1) (math.Sqrt (div 3.0 (div (float $img.Width) $img.Height))) }}
+  {{ $f = math.Max 0.6 (math.Min 1.4 $f) }}
+  {{ $marks = $marks | append (dict "name" .name "img" $img "f" $f) }}
+{{ end }}
+<section class="band wash clients" aria-labelledby="clients-title">
+  <div class="wrap">
+    <h2 id="clients-title" class="label">Our clients</h2>
+  </div>
+  <div class="logo-strip">
+    {{ range $copy := slice 0 1 }}
+    <ul class="logo-row"{{ if $copy }} aria-hidden="true"{{ end }}>
+      {{ range $marks }}
+      <li><img src="{{ .img.RelPermalink }}" width="{{ .img.Width }}" height="{{ .img.Height }}"
+               alt="{{ if not $copy }}{{ .name }}{{ end }}" style="--f: {{ printf "%.3f" .f }}" loading="lazy"></li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ with site.GetPage "/services" }}
+<section class="band" aria-labelledby="services-title">
+  <div class="wrap">
+    <div class="band-head">
+      <h2 id="services-title">What we do</h2>
+      <a class="more" href="{{ .RelPermalink }}">All services &rarr;</a>
+    </div>
+    {{ partial "service-groups.html" (dict "section" . "level" 3) }}
+  </div>
+</section>
+{{ end }}
+
+{{ with first 2 (where site.RegularPages "Section" "news").ByDate.Reverse }}
+<section class="band" aria-labelledby="news-title">
+  <div class="wrap">
+    <div class="band-head">
+      <h2 id="news-title">News</h2>
+      <a class="more" href="{{ "news/" | relURL }}">All news &rarr;</a>
+    </div>
+    {{ partial "post-list.html" . }}
+  </div>
+</section>
+{{ end }}
+{{ end }}

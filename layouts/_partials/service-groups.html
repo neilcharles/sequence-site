@@ -1,0 +1,26 @@
+{{- /* Services as cards under their groups (Measure, Experiment, ...), in
+  the order set by `groups` on the services section. Context: dict
+  "section" (the services section) and "level" (heading level for group
+  names: 2 on the services page, 3 under the home page's "What we do"). */ -}}
+{{- $level := .level | default 2 -}}
+{{- $pages := .section.Pages.ByWeight -}}
+<div class="groups">
+  {{- range $i, $group := .section.Params.groups }}
+  {{- with where $pages "Params.group" $group.name }}
+  <section class="group hue-{{ add (mod $i 4) 1 }}" aria-labelledby="group-{{ $group.name | urlize }}">
+    <div class="group-head">
+      <h{{ $level }} id="group-{{ $group.name | urlize }}">{{ $group.name }}</h{{ $level }}>
+      <p>{{ $group.text }}</p>
+    </div>
+    <ul class="cards">
+      {{- range . }}
+      <li class="card">
+        <h{{ add $level 1 }}><a href="{{ .RelPermalink }}">{{ .Title }}</a></h{{ add $level 1 }}>
+        <p>{{ .Description | default .Summary | plainify }}</p>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+  {{- end }}
+</div>

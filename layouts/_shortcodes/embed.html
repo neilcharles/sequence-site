@@ -1,0 +1,17 @@
+{{- /* A third-party player or document (Google Slides, Spotify, ...) in an
+  iframe, so posts don't need raw HTML. Give it a `ratio` (width/height, e.g.
+  "16/9") to scale with the column, or a fixed `height` in px for players
+  that don't scale; `width` caps it in px.
+
+    {{< embed src="https://..." title="What it is" ratio="450/635" width="450" >}}
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- if not $src }}{{ errorf "embed: missing src in %s" .Position }}{{ end -}}
+{{- $style := slice -}}
+{{- with .Get "width" }}{{ $style = $style | append (printf "max-width: %spx" .) }}{{ end -}}
+{{- with .Get "ratio" }}{{ $style = $style | append (printf "aspect-ratio: %s" .) }}{{ end -}}
+{{- with .Get "height" }}{{ $style = $style | append (printf "height: %spx" .) }}{{ end -}}
+<div class="embed"{{ with $style }} style="{{ delimit . "; " | safeCSS }}"{{ end }}>
+  <iframe src="{{ $src }}" title="{{ .Get "title" | default "Embedded content" }}" loading="lazy" allowfullscreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+</div>

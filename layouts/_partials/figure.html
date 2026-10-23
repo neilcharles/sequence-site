@@ -1,0 +1,20 @@
+{{- /* An image from the page bundle, with a print header and source line.
+  Context: dict "page" and "f" (one entry of the page's `examples`: src,
+  label, title, sub, alt, source). */ -}}
+{{- $page := .page -}}
+{{- $f := .f -}}
+{{- $res := $page.Resources.Get $f.src -}}
+{{- if not $res }}{{ errorf "figure: %q not found in %s" $f.src $page.File.Path }}{{ end -}}
+<figure class="figure">
+  {{- if or $f.label $f.title $f.sub }}
+  <header class="figure-head">
+    {{ with $f.label }}<p class="label">{{ . }}</p>{{ end }}
+    {{ with $f.title }}<h3>{{ . }}</h3>{{ end }}
+    {{ with $f.sub }}<p>{{ . }}</p>{{ end }}
+  </header>
+  {{- end }}
+  <img src="{{ $res.RelPermalink }}" width="{{ $res.Width }}" height="{{ $res.Height }}" alt="{{ $f.alt }}" loading="lazy" decoding="async">
+  {{- with $f.source }}
+  <figcaption><span>{{ . }}</span></figcaption>
+  {{- end }}
+</figure>

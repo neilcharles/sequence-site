@@ -1,0 +1,43 @@
+# Replace with the real domain (or https://<user>.github.io/<repo>/) before deploying.
+baseURL = "https://www.sequence-analytics.com/"
+locale = "en-GB"
+disableKinds = ["taxonomy", "term"]
+title = "Sequence Analytics"
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+# RSS for the news section only.
+[outputs]
+  home = ["html"]
+  section = ["html", "rss"]
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[params]
+  description = "Complete Marketing Analytics"
+  email = "hello@sequence-analytics.com"
+  linkedin = "https://www.linkedin.com/company/sequence-analytics-limited/posts/"
+  calendly = "https://calendly.com/sequence-analytics/introductory-chat"
+  location = "Leeds, United Kingdom"
+  company = "Sequence Analytics Ltd"
+
+[menus]
+  [[menus.main]]
+    name = "Services"
+    pageRef = "/services"
+    weight = 10
+  [[menus.main]]
+    name = "News"
+    pageRef = "/news"
+    weight = 20
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 30
+  [[menus.main]]
+    name = "Contact"
+    pageRef = "/contact"
+    weight = 40

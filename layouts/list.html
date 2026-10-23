@@ -1,0 +1,18 @@
+{{ define "main" }}
+{{ partial "page-head.html" . }}
+<div class="wrap">
+  <div class="report">
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    {{ $paginator := .Paginate .Pages.ByDate.Reverse }}
+    <div class="wide">
+      {{ partial "post-list.html" $paginator.Pages }}
+      {{ if gt $paginator.TotalPages 1 }}
+      <nav class="pager" aria-label="Pagination">
+        {{ with $paginator.Prev }}<a href="{{ .URL }}">&larr; Newer</a>{{ else }}<span></span>{{ end }}
+        {{ with $paginator.Next }}<a href="{{ .URL }}">Older &rarr;</a>{{ end }}
+      </nav>
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

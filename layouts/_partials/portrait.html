@@ -1,0 +1,12 @@
+{{- /* The page's `portrait` (src under assets/, alt, caption), cropped to a
+  portrait shape. Context: dict "page" and "class" (extra classes). */ -}}
+{{- $p := .page.Params.portrait -}}
+{{- $img := resources.Get $p.src -}}
+{{- if not $img }}{{ errorf "portrait: %q not found in assets" $p.src }}{{ end -}}
+{{- $img = $img.Crop "640x800 webp q82 Center" -}}
+<figure class="portrait {{ .class }}">
+  <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $p.alt }}">
+  {{- with $p.caption }}
+  <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>

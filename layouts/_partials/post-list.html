@@ -1,0 +1,11 @@
+<ul class="posts">
+  {{ range . }}
+  <li>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+    <div>
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <p>{{ .Description | default .Summary | plainify | truncate 200 }}</p>
+    </div>
+  </li>
+  {{ end }}
+</ul>

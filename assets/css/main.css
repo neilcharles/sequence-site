@@ -1,0 +1,1193 @@
+/* Sequence Analytics: print. Nunito Sans, the house palette, crisp rules,
+   and the four coloured dashes from the logo as a signature. */
+
+/* Tokens -------------------------------------------------------------------- */
+
+/* House palette: keep in step with sa_colours() in the audit repo's
+   R/palette.R and _extensions/sequence/sequence.scss. */
+:root {
+  --sa-red: #D92344;
+  --sa-blue: #0568A6;
+  --sa-green: #52BD6F;
+  --sa-yellow: #F2B705;
+  --sa-light-red: #ED91A2;
+  --sa-light-blue: #83CDFB;
+  --sa-light-green: #A3DCB2;
+  --sa-light-yellow: #FCDE82;
+  --sa-grey: #636369;
+  --sa-light-grey: #D7D7D9;
+  --sa-white: #FFFFFF;
+  /* Body text (charts are drawn in it too). */
+  --sa-ink: #2B2B30;
+  --sa-wash: #F5F5F6;
+  --sa-blue-dark: #04507F;
+  /* Secondary text on the ink footer. */
+  --sa-grey-on-ink: #B4B4BA;
+
+  --print: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Type scale */
+  --t-label: 0.8125rem;
+  --t-small: 0.9375rem;
+  --t-body: 1.125rem;
+  --t-lead: 1.375rem;
+  --t-h3: 1.25rem;
+  --t-h2: 1.75rem;
+  --t-h1: clamp(2.25rem, 5.2vw, 3.25rem);
+
+  /* Report grid: main text, gap, margin. Wide figures span all three. */
+  --main: 640px;
+  --gap: 48px;
+  --margin: 252px;
+  --page: calc(var(--main) + var(--gap) + var(--margin));
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* Base ---------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--sa-white);
+  color: var(--sa-ink);
+  font-family: var(--print);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--sa-ink);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+h1 {
+  font-size: var(--t-h1);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+h2 {
+  font-size: var(--t-h2);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: var(--t-h3);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--sa-blue);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  color: var(--sa-blue-dark);
+}
+
+:focus-visible {
+  outline: 2px solid var(--sa-blue);
+  outline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--page) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.label {
+  color: var(--sa-grey);
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+}
+
+.lead {
+  color: var(--sa-grey);
+  font-size: var(--t-lead);
+  line-height: 1.45;
+  max-width: var(--main);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 10;
+  background: var(--sa-white);
+  padding: 0.5rem 1rem;
+}
+
+/* The logo's four coloured dashes: the brand signature, used only in the
+   page head and footer. */
+.sa-dashes {
+  display: block;
+  width: 56px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--sa-red) 0 22%, transparent 22% 26%,
+    var(--sa-blue) 26% 48%, transparent 48% 52%,
+    var(--sa-green) 52% 74%, transparent 74% 78%,
+    var(--sa-yellow) 78% 100%
+  );
+}
+
+/* Header -------------------------------------------------------------------- */
+
+.site-header {
+  position: relative;
+  border-bottom: 1px solid var(--sa-light-grey);
+  background: var(--sa-white);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 68px;
+}
+
+.logo {
+  display: block;
+  line-height: 0;
+}
+
+.logo img {
+  height: 26px;
+  width: auto;
+}
+
+.nav ul {
+  display: flex;
+  gap: 2.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  color: var(--sa-ink);
+  font-size: var(--t-small);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.nav a:hover {
+  color: var(--sa-blue);
+}
+
+.nav a[aria-current] {
+  color: var(--sa-blue);
+  border-bottom-color: var(--sa-blue);
+}
+
+/* Small screens: the menu folds behind a button (see header.html). Without
+   script the button stays hidden and the menu stays open. */
+.nav-toggle {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .site-header .wrap {
+    flex-wrap: wrap;
+  }
+
+  .js .nav-toggle {
+    display: block;
+    cursor: pointer;
+    background: var(--sa-white);
+    color: var(--sa-ink);
+    font: inherit;
+    font-size: var(--t-small);
+    font-weight: 700;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--sa-light-grey);
+    border-radius: 4px;
+  }
+
+  .js .nav-toggle[aria-expanded="false"] + .nav {
+    display: none;
+  }
+
+  .js .nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 5;
+    background: var(--sa-white);
+    border-bottom: 1px solid var(--sa-light-grey);
+    padding: 0.5rem var(--gutter) 1rem;
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav a {
+    display: block;
+    padding: 0.6rem 0;
+    border-bottom: none;
+  }
+}
+
+/* Buttons and links --------------------------------------------------------- */
+
+.button {
+  display: inline-block;
+  background: var(--sa-blue);
+  color: var(--sa-white);
+  font-size: var(--t-small);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.8rem 1.4rem;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background: var(--sa-blue-dark);
+  color: var(--sa-white);
+}
+
+.button-outline {
+  background: transparent;
+  color: var(--sa-blue);
+  box-shadow: inset 0 0 0 2px var(--sa-blue);
+}
+
+.button-outline:hover {
+  background: var(--sa-blue);
+  color: var(--sa-white);
+}
+
+.more {
+  font-size: var(--t-small);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.more:hover {
+  text-decoration: underline;
+}
+
+/* Page head ----------------------------------------------------------------- */
+
+.page-head {
+  padding: clamp(2.5rem, 7vw, 4.5rem) 0 clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.page-head .sa-dashes {
+  margin-bottom: 1.5rem;
+}
+
+.page-head h1 {
+  max-width: 16em;
+}
+
+.page-head .meta {
+  color: var(--sa-grey);
+  font-size: var(--t-small);
+}
+
+/* Report grid --------------------------------------------------------------- */
+
+/* Children sit in the main column; .wide spans main and margin; .aside sits
+   in the margin. Below the breakpoint everything stacks. */
+.report {
+  display: grid;
+  grid-template-columns: minmax(0, var(--main)) var(--gap) minmax(0, var(--margin));
+  align-content: start;
+  padding-bottom: clamp(3rem, 8vw, 5rem);
+}
+
+.report > * {
+  grid-column: 1;
+}
+
+.report > .wide {
+  grid-column: 1 / -1;
+}
+
+.report > .aside {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}
+
+@media (max-width: 960px) {
+  .report {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .report > .aside {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+/* Photo in the margin, with a blue rule along its top edge. When the text
+   opens with a heading, the photo drops by the heading's height (line-height
+   1.2 plus its margin, and a little for the paragraph's leading) so it
+   lines up with the first line of text. */
+.portrait {
+  position: relative;
+  align-self: start;
+  margin: 0;
+}
+
+.report:has(> .prose > h2:first-child) > .portrait-margin {
+  margin-top: calc(var(--t-h2) * 1.2 + 0.75rem + 0.35rem);
+}
+
+.portrait::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--sa-blue);
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.portrait figcaption {
+  color: var(--sa-grey);
+  font-size: var(--t-label);
+  margin-top: 0.6rem;
+}
+
+/* One photo per screen size: in the margin when there is one, otherwise
+   in the text where the portrait shortcode puts it. */
+.portrait-inline {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .portrait-margin {
+    display: none;
+  }
+
+  .portrait-inline {
+    display: block;
+    max-width: 240px;
+    margin: 2rem 0;
+  }
+}
+
+/* Long-form text ------------------------------------------------------------ */
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose > p:first-child {
+  font-size: var(--t-lead);
+  line-height: 1.45;
+}
+
+.prose h2 {
+  margin-top: 3rem;
+}
+
+.prose h3 {
+  margin-top: 2.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sa-light-grey);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+.prose li {
+  margin-bottom: 0.4rem;
+}
+
+.prose li::marker {
+  color: var(--sa-grey);
+}
+
+.prose blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--sa-light-grey);
+  color: var(--sa-grey);
+}
+
+/* A hairline frame, so screenshots and white-backed charts don't run into
+   the text around them. */
+.prose img {
+  display: block;
+  margin: 1.5rem 0;
+  border: 1px solid var(--sa-light-grey);
+}
+
+.prose .portrait img {
+  margin: 0;
+  border: 0;
+}
+
+.prose code {
+  font-size: 0.9em;
+}
+
+/* Embedded players and documents (the embed shortcode). */
+.embed {
+  margin: 1.5rem 0;
+}
+
+.embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 4px;
+}
+
+/* Service page ------------------------------------------------------------ */
+
+/* Text on the left, example images stacked on the right; stacked below the
+   breakpoint, text first. */
+.service {
+  padding-bottom: clamp(3rem, 8vw, 5rem);
+}
+
+.service:not(.has-examples) {
+  max-width: var(--main);
+}
+
+/* The next-service link sits under the text, or under the examples once
+   they stack. */
+.service.has-examples {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "text examples" "next examples";
+  column-gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.service-text { grid-area: text; }
+.service-examples { grid-area: examples; }
+.service > .next { grid-area: next; }
+
+@media (max-width: 860px) {
+  .service.has-examples {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "text" "examples" "next";
+  }
+
+  .service-examples {
+    margin-top: 3rem;
+  }
+}
+
+.service-text section + section {
+  margin-top: 2.75rem;
+}
+
+/* Section heads: a rule with the brand dash, as on the service groups. */
+.service-text h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--t-h3);
+  letter-spacing: 0;
+  margin: 0 0 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--sa-ink);
+}
+
+.service-text h2::before {
+  content: "";
+  flex: none;
+  width: 22px;
+  height: 4px;
+  background: var(--sa-blue);
+}
+
+.service .prose > p:first-child {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.good-for {
+  font-size: var(--t-small);
+  color: var(--sa-grey);
+  margin: 0;
+}
+
+.good-for .label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.ticks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ticks li {
+  position: relative;
+  padding: 0.55rem 0 0.55rem 1.4rem;
+  border-bottom: 1px solid var(--sa-light-grey);
+}
+
+.ticks li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.15em;
+  width: 10px;
+  height: 3px;
+  background: var(--sa-blue);
+}
+
+/* Examples sit on the column's top line, level with the first heading. */
+.service-examples .figure {
+  margin: 0 0 2.5rem;
+}
+
+.service-examples .figure:last-child {
+  margin-bottom: 0;
+}
+
+/* Next link at the foot of a service ---------------------------------------- */
+
+.next {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--sa-light-grey);
+}
+
+.next a {
+  font-size: var(--t-h3);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.next a:hover {
+  text-decoration: underline;
+}
+
+/* Figures ------------------------------------------------------------------- */
+
+.figure {
+  margin: 0;
+}
+
+.figure-head {
+  max-width: var(--main);
+  margin-bottom: 1rem;
+}
+
+.figure-head h3 {
+  margin: 0 0 0.25rem;
+}
+
+.figure-head p {
+  color: var(--sa-grey);
+  margin: 0;
+}
+
+.figure-head .label {
+  margin-bottom: 0.4rem;
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.figure figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  color: var(--sa-grey);
+  font-size: var(--t-label);
+  margin-top: 0.75rem;
+}
+
+/* Home ---------------------------------------------------------------------- */
+
+.hero {
+  padding: clamp(3.5rem, 10vw, 6.5rem) 0 clamp(3rem, 8vw, 4.5rem);
+}
+
+/* Full-bleed photo strip under the header (home page `banner` param). The
+   photo is clipped to a slanted band, with blue and grey accent wedges
+   fanning out beneath it. Polygon points are % of the banner's height. */
+.banner {
+  position: relative;
+  height: clamp(200px, 30vw, 440px);
+  margin-top: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.banner::before,
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.banner::before {
+  background: var(--sa-light-grey);
+  clip-path: polygon(0 88%, 100% 72%, 100% 76%, 0 100%);
+}
+
+.banner::after {
+  background: var(--sa-blue);
+  clip-path: polygon(0 74%, 100% 64%, 100% 73%, 0 93%);
+}
+
+.banner img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 40%;
+  clip-path: polygon(0 10%, 100% 0, 100% 66%, 0 77%);
+}
+
+.banner + .hero {
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.hero .sa-dashes {
+  margin-bottom: 1.75rem;
+}
+
+/* The site headline stays on one line: it shrinks with the viewport on
+   phones rather than wrapping. */
+.hero h1 {
+  font-size: min(var(--t-h1), 6.4vw);
+  white-space: nowrap;
+  margin-bottom: 1.25rem;
+}
+
+.hero .lead {
+  margin-bottom: 2.5rem;
+}
+
+.measures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 1.25rem var(--gap);
+  list-style: none;
+  margin: 0 0 2.5rem;
+  padding: 0;
+}
+
+.measures li {
+  border-top: 2px solid var(--sa-ink);
+  padding-top: 0.75rem;
+  font-size: var(--t-small);
+  color: var(--sa-grey);
+}
+
+.measures strong {
+  display: block;
+  color: var(--sa-ink);
+  font-size: var(--t-body);
+  margin-bottom: 0.2rem;
+}
+
+.band {
+  padding: clamp(3rem, 8vw, 5rem) 0;
+}
+
+.band.wash {
+  background: var(--sa-wash);
+}
+
+.band-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.band-head h2 {
+  margin: 0;
+}
+
+/* Client logos: one grey, sized by area (--f, set in home.html) and drifting
+   slowly sideways. The row is in the markup twice, so sliding left by one
+   row's width loops without a seam. Edges fade into the wash. */
+.clients h2 {
+  text-align: center;
+  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.logo-strip {
+  --logo: clamp(30px, 3.2vw, 42px);
+  display: flex;
+  max-width: 1600px;
+  margin: 0 auto;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.logo-row {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  list-style: none;
+  margin: 0;
+  padding: 0 clamp(1.25rem, 3vw, 2.5rem);
+  animation: logo-drift 60s linear infinite;
+}
+
+.logo-strip:hover .logo-row {
+  animation-play-state: paused;
+}
+
+.logo-row img {
+  display: block;
+  width: auto;
+  height: calc(var(--logo) * var(--f));
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.logo-row img:hover {
+  opacity: 1;
+}
+
+@keyframes logo-drift {
+  to { transform: translateX(-100%); }
+}
+
+/* Without motion, the logos wrap into centred rows instead. */
+@media (prefers-reduced-motion: reduce) {
+  .logo-strip {
+    mask-image: none;
+    max-width: calc(var(--page) + 2 * var(--gutter));
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .logo-row {
+    flex: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 2rem;
+    animation: none;
+  }
+
+  .logo-row[aria-hidden] {
+    display: none;
+  }
+}
+
+/* Services: cards under four groups ---------------------------------------- */
+
+/* Each group takes one of the logo's four hues, in dash order. */
+.group.hue-1 { --accent: var(--sa-red); }
+.group.hue-2 { --accent: var(--sa-blue); }
+.group.hue-3 { --accent: var(--sa-green); }
+.group.hue-4 { --accent: var(--sa-yellow); }
+
+.prose + .wide .groups {
+  margin-top: 1.5rem;
+}
+
+.group + .group {
+  margin-top: 2.75rem;
+}
+
+.group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--sa-ink);
+}
+
+.group-head h2,
+.group-head h3 {
+  margin: 0;
+  font-size: var(--t-h3);
+  letter-spacing: 0;
+}
+
+/* The group's dash, as in the logo. It sits inline (not as a flex item) so
+   the heading keeps its text baseline and the description lines up with
+   the words, not the dash. */
+.group-head h2::before,
+.group-head h3::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 4px;
+  margin-right: 0.6rem;
+  vertical-align: 0.3em;
+  background: var(--accent);
+}
+
+.group-head p {
+  color: var(--sa-grey);
+  font-size: var(--t-small);
+  margin: 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--sa-white);
+  border: 1px solid var(--sa-light-grey);
+  border-radius: 4px;
+  padding: 1.6rem 1.5rem 1.4rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+/* The group's dash. On rollover it runs the full width of the card, which
+   lifts slightly and takes the group colour on its border. */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 1.5rem;
+  right: calc(100% - 1.5rem - 40px);
+  height: 4px;
+  background: var(--accent, var(--sa-blue));
+  border-radius: 4px 4px 0 0;
+  transition: left 0.3s ease-out, right 0.3s ease-out;
+}
+
+.card:focus-within,
+.card:hover {
+  border-color: var(--accent, var(--sa-blue));
+  box-shadow: 0 10px 24px -14px rgb(43 43 48 / 0.35);
+  transform: translateY(-2px);
+}
+
+.card:focus-within::before,
+.card:hover::before {
+  left: -1px;
+  right: -1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::before {
+    transition: none;
+  }
+
+  .card:focus-within,
+  .card:hover {
+    transform: none;
+  }
+}
+
+.card h3,
+.card h4 {
+  margin: 0 0 0.5rem;
+  font-size: var(--t-h3);
+}
+
+.card h3 a,
+.card h4 a {
+  color: var(--sa-ink);
+  text-decoration: none;
+}
+
+/* Whole card is the link target. */
+.card h3 a::after,
+.card h4 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card:hover h3 a,
+.card:hover h4 a,
+.card:focus-within h3 a,
+.card:focus-within h4 a {
+  color: var(--sa-blue);
+}
+
+.card p {
+  color: var(--sa-grey);
+  font-size: var(--t-small);
+  margin: 0;
+}
+
+/* News list ----------------------------------------------------------------- */
+
+.posts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid var(--sa-ink);
+}
+
+.posts li {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 0.25rem var(--gap);
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--sa-light-grey);
+}
+
+.posts time {
+  color: var(--sa-grey);
+  font-size: var(--t-small);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.15rem;
+}
+
+.posts h3 {
+  margin: 0 0 0.3rem;
+}
+
+.posts h3 a {
+  color: var(--sa-ink);
+  text-decoration: none;
+}
+
+.posts h3 a:hover {
+  color: var(--sa-blue);
+}
+
+.posts p {
+  color: var(--sa-grey);
+  font-size: var(--t-small);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .posts li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+/* Contact details ----------------------------------------------------------- */
+
+/* Contact page: one card per way to get in touch, each with a button. The
+   cards take the full page width, so all three sit in one row. */
+.report > .prose:has(.contact-options) {
+  grid-column: 1 / -1;
+}
+
+.contact-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1.25rem;
+  margin: 0;
+}
+
+.contact-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--sa-white);
+  border: 1px solid var(--sa-light-grey);
+  border-radius: 4px;
+  padding: 1.6rem 1.5rem 1.5rem;
+}
+
+.contact-option::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 1.5rem;
+  width: 40px;
+  height: 4px;
+  background: var(--sa-blue);
+}
+
+.contact-option h2 {
+  font-size: var(--t-h3);
+  letter-spacing: 0;
+  margin: 0 0 0.5rem;
+}
+
+.contact-option p {
+  color: var(--sa-grey);
+  font-size: var(--t-small);
+  margin: 0 0 1.5rem;
+}
+
+/* Buttons sit on the cards' bottom edge, level across the row. */
+.contact-option .button {
+  margin-top: auto;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* Contact strip ------------------------------------------------------------- */
+
+.contact-strip {
+  border-top: 1px solid var(--sa-light-grey);
+  padding: clamp(2.5rem, 6vw, 3.5rem) 0;
+}
+
+.contact-strip .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem var(--gap);
+}
+
+.contact-strip h2 {
+  margin: 0 0 0.25rem;
+}
+
+.contact-strip p {
+  color: var(--sa-grey);
+  margin: 0;
+  max-width: var(--main);
+}
+
+/* Footer: an ink band ------------------------------------------------------- */
+
+.site-footer {
+  background: var(--sa-ink);
+  color: var(--sa-grey-on-ink);
+  font-size: var(--t-small);
+  padding: clamp(2.5rem, 6vw, 3.5rem) 0 2rem;
+}
+
+.site-footer .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem var(--gap);
+}
+
+.site-footer .brand strong {
+  display: block;
+  color: var(--sa-white);
+  font-size: var(--t-body);
+  margin: 0.9rem 0 0.25rem;
+}
+
+.site-footer .brand p {
+  margin: 0;
+}
+
+.site-footer h2 {
+  color: var(--sa-white);
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+}
+
+.site-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer li {
+  margin-bottom: 0.35rem;
+}
+
+.site-footer a {
+  color: var(--sa-white);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.site-footer .legal {
+  grid-column: 1 / -1;
+  border-top: 1px solid #44444A;
+  padding-top: 1.25rem;
+  margin: 0.5rem 0 0;
+  font-size: var(--t-label);
+}
+
+@media (max-width: 760px) {
+  .site-footer .wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

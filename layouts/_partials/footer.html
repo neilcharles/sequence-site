@@ -1,0 +1,26 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="brand">
+      <span class="sa-dashes" aria-hidden="true"></span>
+      <strong>{{ site.Title }}</strong>
+      <p>Marketing data science: measurement and planning for advertisers.</p>
+    </div>
+    <nav aria-label="Footer">
+      <h2>Pages</h2>
+      <ul>
+        {{ range site.Menus.main }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+    <div>
+      <h2>Contact</h2>
+      <ul>
+        {{ with site.Params.email }}<li><a href="mailto:{{ . }}">{{ . }}</a></li>{{ end }}
+        {{ with site.Params.linkedin }}<li><a href="{{ . }}">LinkedIn</a></li>{{ end }}
+        {{ with site.Params.location }}<li>{{ . }}</li>{{ end }}
+      </ul>
+    </div>
+    <p class="legal">&copy; {{ now.Year }} {{ site.Params.company }}</p>
+  </div>
+</footer>

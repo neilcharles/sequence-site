@@ -1,0 +1,4 @@
+{{- /* Where the page's portrait sits on narrow screens, once the margin
+  column has folded into the text. On wide screens it's in the margin
+  instead (single.html), and this copy is hidden. */ -}}
+{{- partial "portrait.html" (dict "page" .Page "class" "portrait-inline") -}}

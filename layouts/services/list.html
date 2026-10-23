@@ -1,0 +1,9 @@
+{{ define "main" }}
+{{ partial "page-head.html" . }}
+<div class="wrap">
+  <div class="report">
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    <div class="wide">{{ partial "service-groups.html" (dict "section" .) }}</div>
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{ partial "page-head.html" . }}
+<div class="wrap">
+  <article class="report">
+    {{- /* An optional photo in the margin (front matter `portrait`). On narrow
+         screens it moves to wherever the text has a portrait shortcode. */}}
+    {{ with .Params.portrait }}{{ partial "portrait.html" (dict "page" $ "class" "aside portrait-margin") }}{{ end }}
+    <div class="prose">
+      {{ .Content }}
+      {{ if .IsPage }}{{ with .Parent }}{{ if not .IsHome }}
+      <p class="next"><a href="{{ .RelPermalink }}">&larr; All {{ lower .Title }}</a></p>
+      {{ end }}{{ end }}{{ end }}
+    </div>
+  </article>
+</div>
+{{ end }}

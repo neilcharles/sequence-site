@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="{{ "/" | relURL }}" aria-label="{{ site.Title }} home">
+      {{ with resources.Get "images/logo.png" }}
+      <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ site.Title }}">
+      {{ end }}
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false" hidden>Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <ul>
+        {{ $page := . }}
+        {{ range site.Menus.main }}
+        <li><a href="{{ .URL }}"{{ if or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+  </div>
+</header>
