@@ -3,7 +3,7 @@ title: Sequence Analytics
 banner: images/banner-uk.jpg
 label: Marketing data science
 headline: Complete Marketing Analytics
-lead: We combine geo-demographic profiling, marketing mix modelling, attribution analysis and test-and-learn to give you clear guidance that helps make decisions
+lead: We combine marketing mix modelling, geo-demographic profiling, attribution analysis and test-and-learn to give you clear guidance that helps make decisions
 measures:
   - title: Strategic
     text: Identifying sources of growth, advertising budget setting, customer lifetime value and sales forecasting

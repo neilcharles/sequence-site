@@ -2,26 +2,27 @@
 title: Marketing mix modelling
 label: Service
 description: The gold standard of marketing effectiveness measurement and the foundation for forecasting and media mix optimisation.
-lead: How much does each channel contribute to sales, and where should the next pound go? A mix model answers the budget question directly.
+lead: Measures what has caused sales to change in the past so that we can build more effective media plans
 group: Measure
 weight: 10
-data:
-  - Weekly sales, by region where possible
-  - Spend and delivery by channel
-  - Price, promotions and distribution
-  - Results from experiments, to calibrate the model
-get:
-  - Contribution and return on investment by channel, with ranges, not single numbers
-  - Diminishing-returns curves for each channel, showing where spend starts to saturate
-  - Budget scenarios you can compare side by side
-  - Calibration against experiment results where we have them, so the model agrees with the strongest evidence
-good_for: Annual and quarterly budget setting, and conversations with finance about what marketing returns.
-# Placeholder until there's a real mix-model chart.
-examples:
-  - src: sketch.png
-    label: Placeholder · public data
-    alt: Line chart of US unemployment from 1967 to 2015, with peaks in the early 1980s and around 2010.
-    source: "Placeholder: US unemployment, 1967–2015 (ggplot2's economics data)."
----
+what_is_it: |
+  A marketing mix model estimates what has caused sales to change over time, including the contributions of advertising, price, seasonality, distribution and the wider market. Advertising gets credit for the increased sales that it genuinely drove.
 
-The model estimates each channel's contribution over time, alongside price, seasonality, distribution and the wider market, so media gets credit only for what it actually drove.
+  {{< button href="https://stories.sequence-analytics.com/how-marketing-mix-modelling-works/" >}}Read an approachable guide to how Marketing Mix Modelling works and what it can and can't do{{< /button >}}
+when_is_it_used:
+  - Understanding the drivers of sales
+  - Measuring the real, incremental effectiveness of advertising
+  - Annual and quarterly budget setting to hit targets
+  - Optimising the mix of channels
+  - Conversations with finance about ROI
+why_sequence:
+  - Years of experience across FMCG, retail, finance, motoring, betting, healthcare and more
+  - MMM isn't the only tool in our toolbox. We use it for what it's good at and integrate the results alongside other techniques
+  - We continue to support you after the debrief to make decisions using the models
+  - Best-in-class interactive optimisation and scenario planning tools 
+#examples:
+#  - src: sketch.png
+#    label: Placeholder · public data
+#    alt: Line chart of US unemployment from 1967 to 2015, with peaks in the early 1980s and #around 2010.
+#   source: "Placeholder: US unemployment, 1967–2015 (ggplot2's economics data)."
+---

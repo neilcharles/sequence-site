@@ -2,10 +2,6 @@
 title: About Us
 label: About
 lead: We make simple answers from complex data
-portrait:
-  src: images/neil.jpg
-  alt: Neil Charles
-  caption: Neil Charles
 ---
 
 ## Hello, I'm Neil.
@@ -17,8 +13,6 @@ All of my work is driven by data and I'm as happy with surveys of a few hundred 
 I've managed analytical teams and built marketing models across a wide variety of brands and sectors, from Direct Line and HSBC to Volvo and Mazda and from SkyBet to GlaxoSmithKline.
 
 My experience covers working for large network agencies, small specialist consultancies, for media owners and for advertisers. I've seen the best - and worst - of analytics projects at all of these and know how to create solutions that work.
-
-{{< portrait >}}
 
 ## I founded Sequence Analytics.
 

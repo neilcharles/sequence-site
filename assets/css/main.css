@@ -568,17 +568,6 @@ img {
   line-height: inherit;
 }
 
-.good-for {
-  font-size: var(--t-small);
-  color: var(--sa-grey);
-  margin: 0;
-}
-
-.good-for .label {
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
 .ticks {
   list-style: none;
   margin: 0;

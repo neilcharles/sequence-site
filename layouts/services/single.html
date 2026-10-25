@@ -1,25 +1,29 @@
 {{ define "main" }}
 {{ partial "page-head.html" . }}
 <div class="wrap">
-  {{- /* Text on the left (what it is, what we need, what you get); example
+  {{- /* Text on the left (what it is, when it's used, why Sequence); example
        images stacked on the right. Without examples the text runs alone. */}}
   <article class="service{{ if .Params.examples }} has-examples{{ end }}">
     <div class="service-text">
       <section aria-labelledby="what-is-it">
         <h2 id="what-is-it">What is it?</h2>
-        <div class="prose">{{ .Content }}</div>
-        {{ with .Params.good_for }}<p class="good-for"><span class="label">Good for</span>{{ . }}</p>{{ end }}
+        <div class="prose">{{ with .Params.what_is_it }}{{ $.RenderString (dict "display" "block") . }}{{ end }}</div>
       </section>
-      {{ with .Params.data }}
-      <section aria-labelledby="what-we-need">
-        <h2 id="what-we-need">What we need</h2>
-        <ul class="ticks">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      {{ with .Params.when_is_it_used }}
+      <section aria-labelledby="when-is-it-used">
+        <h2 id="when-is-it-used">When is it used?</h2>
+        {{- /* A list renders as ticks, like Why Sequence; plain text as a paragraph. */}}
+        {{ if reflect.IsSlice . }}
+        <ul class="ticks">{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+        {{ else }}
+        <div class="prose"><p>{{ . | markdownify }}</p></div>
+        {{ end }}
       </section>
       {{ end }}
-      {{ with .Params.get }}
-      <section aria-labelledby="what-you-get">
-        <h2 id="what-you-get">What you get</h2>
-        <ul class="ticks">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      {{ with .Params.why_sequence }}
+      <section aria-labelledby="why-sequence">
+        <h2 id="why-sequence">Why Sequence?</h2>
+        <ul class="ticks">{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
       </section>
       {{ end }}
     </div>

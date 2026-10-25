@@ -1,0 +1,3 @@
+{{- /* A link styled as a button: {{< button href="..." >}}Text{{< /button >}}.
+  Add `outline="true"` for the outlined style. */ -}}
+<p><a class="button{{ if .Get "outline" }} button-outline{{ end }}" href="{{ .Get "href" }}">{{ .Inner | .Page.RenderString }}</a></p>
