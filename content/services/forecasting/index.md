@@ -20,4 +20,6 @@ why_sequence:
   - We embrace forecasting as the ultimate purpose of our modelling, but we don't pretend it's easy
   - We don't rely only on marketing mix models. MMM is not designed for forecasting
   - We track ongoing performance against forecasts, using MMM and customer propensity modelling to diagnose why performance is or is not on target
+#
+#
 ---
