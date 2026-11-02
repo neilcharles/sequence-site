@@ -20,4 +20,17 @@ why_sequence:
   - "Deep understanding of TV trading mechanics: results are split by things you can actually change - channel, time of day, spot length and creative"
   - "Fast and repeatable, and works alongside a mix model that measures the longer-term uplift"
   - Real-world forecasting that simulates future spot schedules and their effectiveness
+examples:
+  - src: minute_chart.png
+    label: Example · minute level visitor response
+    title: Modelled response to TV spots
+    sub: Web traffic for a single day, isolating the individual spikes caused by TV spots
+    alt: Web traffic and TV spots
+    source: Simulated data based on client case study
+  - src: optimisation.png
+    label: Example · efficiency optimisation
+    title: Efficiency by spot type
+    sub: Average efficiency of spots in generating web visit direct responses, with confidence bands
+    alt: TV spot optimisation
+    source: Simulated data based on client case study
 ---

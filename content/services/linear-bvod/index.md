@@ -21,4 +21,11 @@ why_sequence:
   - Our TV optimisation tool is unique, removing the confusion between linear TV and BVOD metrics and putting them on the same clear footing
   - Trading mechanics are built directly into the tool, including regional broadcast coverage and instant simulation of 'free' out-of-target reach you get from linear TV
   - The generated plan is often a 'best of both', using linear TV in those regions where it is efficient and then BVOD to cover the gaps or to increase coverage where you have valuable potential customers
+examples:
+  - src: optimisation.png
+    label: Example · Linear and BVOD optimisation
+    title: Optimising regional linear and BVOD coverage
+    sub: Sequence Analytics' interactive linear and BVOD optimisation tool
+    alt: Map of Manchester coloured by predicted propensity for each small area, green for high and red for low.
+    source: Simulated data based on client case study
 ---

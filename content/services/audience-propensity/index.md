@@ -25,11 +25,23 @@ why_sequence:
   - We can start with just your Google Analytics data
   - Advanced local area web traffic normalisation makes Google Analytics geo data powerfully useful
   - Combined with marketing mix modelling, we go beyond ROI measurement to explain *who* is responding
-#examples:
-#  - src: figure.webp
-#    label: Example · dummy client
-#    title: Propensity with drive time
-#    sub: Predicted index by small area across London and the South East; 100 is the GB average #per resident.
-#    alt: Map of London and the South East coloured by predicted propensity for each small area, #green for high and red for low.
-#    source: Dummy client data with Census 2021.
+examples:
+  - src: manchester.png
+    label: Example · GA4 Visitor propensity
+    title: Propensity around a Manchester store
+    sub: Web visitor propensity, normalised against commercial web traffic benchmarks
+    alt: Map of Manchester coloured by predicted propensity for each small area, green for high and red for low.
+    source: Simulated data based on client case study
+  - src: drivetime.png
+    label: Example · GA4 Visitor drivetime
+    title: Drivetime analysis using GA4
+    sub: Propensity to visit website by drivetime from physical store
+    alt: Scatter chart
+    source: Simulated data based on client case study
+  - src: age.png
+    label: Example · Postcode Age Profile
+    title: Customer Age Profile from Postcodes
+    sub: Age distribution derived from customer postcodes
+    alt: Scatter chart
+    source: Simulated data based on client case study
 ---
