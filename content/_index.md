@@ -5,11 +5,11 @@ label: Marketing data science
 headline: Complete Marketing Analytics
 lead: We combine marketing mix modelling, geo-demographic profiling, attribution analysis and test-and-learn to give you clear guidance that helps make decisions
 measures:
-  - title: Strategic
+  - title: Strategic Analytics
     text: Identifying sources of growth, advertising budget setting, customer lifetime value and sales forecasting
-  - title: Campaign
+  - title: Campaign Analytics
     text: Marketing mix modelling, geo-experiments, A/B testing and media channel optimisation
-  - title: Tactical
+  - title: Tactical Analytics
     text: Attribution models and detailed direct response measurement
 # Logos come from scripts/client_logos.py. `scale` nudges a mark whose
 # weight looks off once sized by area (dense block logos read heavier).
