@@ -12,7 +12,7 @@ what_is_it: |
 
   Customer propensity analysis becomes a powerful platform to understand your customers: Who they are now, where there are sources of growth, how to tap into them with advertising or expanded distribution and ongoing performance tracking.
 
-    {{< button href="https://stories.sequence-analytics.com/how-marketing-mix-modelling-works/" >}}See a Demo{{< /button >}}
+#    {{< button href="https://stories.sequence-analytics.com/how-marketing-mix-modelling-works/" >}}See a Demo{{< /#button >}}
 when_is_it_used:
   - Understanding the demographics of your customer base and who is driving sales value
   - Targeting local advertising, including outdoor, door drops, direct mail and addressible TV
