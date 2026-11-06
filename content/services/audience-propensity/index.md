@@ -15,7 +15,7 @@ what_is_it: |
 #    {{< button href="https://stories.sequence-analytics.com/how-marketing-mix-modelling-works/" >}}See a Demo{{< /#button >}}
 when_is_it_used:
   - Understanding the demographics of your customer base and who is driving sales value
-  - Targeting local advertising, including outdoor, door drops, direct mail and addressible TV
+  - Targeting local advertising, including outdoor, door drops, direct mail and addressable TV
   - Targeting regional broadcast advertising
   - Store performance diagnostics and modelling
   - Finding sources of growth, where people who look like your customers are not currently shopping with you
