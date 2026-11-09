@@ -23,6 +23,7 @@ enableRobotsTXT = true
   calendly = "https://calendly.com/sequence-analytics/introductory-chat"
   location = "Leeds, United Kingdom"
   company = "Sequence Analytics Ltd"
+  gaMeasurementId = "G-4K9YFZQJ7F"
 
 [menus]
   [[menus.main]]
