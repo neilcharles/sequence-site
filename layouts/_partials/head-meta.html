@@ -8,6 +8,13 @@
 <meta property="og:description" content="{{ $description }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:type" content="{{ cond (eq .Section "news") "article" "website" }}">
-{{ with resources.Get "images/logo.png" }}
-<meta property="og:image" content="{{ .Permalink }}">
-{{ end }}
+{{/* Social preview: the homepage banner, cropped to the 1.91:1 (1200x630)
+     ratio that LinkedIn, Facebook and X expect. */}}
+{{ with site.Home.Params.banner }}{{ with resources.Get . }}
+{{ $og := .Fill "1200x630 Center jpg q82" }}
+<meta property="og:image" content="{{ $og.Permalink }}">
+<meta property="og:image:width" content="{{ $og.Width }}">
+<meta property="og:image:height" content="{{ $og.Height }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ $og.Permalink }}">
+{{ end }}{{ end }}
